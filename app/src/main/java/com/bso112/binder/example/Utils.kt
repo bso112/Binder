@@ -15,7 +15,6 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.bumptech.glide.Glide
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
-import kotlin.math.roundToInt
 
 fun ImageView.loadImage(imageUrl: String, @ColorRes placeHolderColorRes: Int) {
     Glide.with(this)
