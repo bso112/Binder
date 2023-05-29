@@ -8,7 +8,7 @@ sealed class Section : BindableUIModel {
     abstract val id: Int
     abstract val title: String
 
-    class Horizontal(
+    data class Horizontal(
         override val id: Int,
         override val title: String
     ) : Section() {
@@ -23,7 +23,7 @@ sealed class Section : BindableUIModel {
         }
     }
 
-    class Vertical(
+    data class Vertical(
         override val id: Int,
         override val title: String
     ) : Section() {
@@ -38,7 +38,7 @@ sealed class Section : BindableUIModel {
         }
     }
 
-    class Grid(
+    data class Grid(
         override val id: Int,
         override val title: String
     ) : Section() {
