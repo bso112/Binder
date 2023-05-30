@@ -1,4 +1,4 @@
-package com.bso112.binder.example
+package com.bso112.binder.example.util
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -22,11 +22,6 @@ fun ImageView.loadImage(imageUrl: String, @ColorRes placeHolderColorRes: Int) {
         .placeholder(placeHolderColorRes)
         .into(this)
 }
-
-
-fun <T> Any?.cast(): T? = this as? T
-
-fun <T> Any?.cast(success: (T) -> Unit): T? = cast<T>()?.also(success)
 
 fun Context.toast(message: String, duration: Int = Toast.LENGTH_SHORT) {
     Toast.makeText(this, message, duration).show()

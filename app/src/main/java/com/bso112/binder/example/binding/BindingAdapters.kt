@@ -2,10 +2,12 @@ package com.bso112.binder.example.binding
 
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.bso112.binder.example.R
-import com.bso112.binder.example.loadImage
+import com.bso112.binder.example.util.loadImage
 
 @BindingAdapter("srcUrl")
 fun ImageView.setSrcUrl(uri: String?) {
@@ -24,4 +26,19 @@ fun RecyclerView.bindSubmitList(
         adapter = BindingListAdapter()
     }
     (adapter as? ListAdapter<Any, *>)?.submitList(list)
+}
+
+@BindingAdapter("refreshLayout")
+fun RecyclerView.setRefreshLayout(refreshLayout: SwipeRefreshLayout) {
+    addOnScrollListener(object : RecyclerView.OnScrollListener() {
+        override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+            val isRefreshEnabled = when (val lm = layoutManager) {
+                is LinearLayoutManager -> lm.findFirstCompletelyVisibleItemPosition() == 0
+                else -> true
+            }
+            if (isRefreshEnabled) {
+                refreshLayout.isEnabled = true
+            }
+        }
+    })
 }

@@ -5,7 +5,7 @@ import androidx.annotation.LayoutRes
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.findViewTreeLifecycleOwner
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import com.bso112.binder.example.createViewDataBinding
+import com.bso112.binder.example.util.createViewDataBinding
 
 class BindingViewHolder(
     private val binding: ViewDataBinding,

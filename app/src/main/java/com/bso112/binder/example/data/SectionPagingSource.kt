@@ -17,7 +17,7 @@ class SectionPagingSource(
             LoadResult.Page(
                 data = sections,
                 prevKey = null,
-                nextKey =  currentPage + 1
+                nextKey =  null
             )
         } catch (e: Exception) {
             LoadResult.Error(e)

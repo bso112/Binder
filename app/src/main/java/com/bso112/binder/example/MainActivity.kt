@@ -7,6 +7,7 @@ import androidx.databinding.DataBindingUtil
 import com.bso112.binder.example.binding.BindingPagingDataAdapter
 import com.bso112.binder.example.data.Section
 import com.bso112.binder.example.databinding.ActivityMainBinding
+import com.bso112.binder.example.util.repeatOnStarted
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -26,6 +27,14 @@ class MainActivity : AppCompatActivity() {
         binding.lifecycleOwner = this
         binding.vm = viewModel
         binding.rvSection.adapter = sectionAdapter
+
+        binding.layoutRefresh.setOnRefreshListener {
+            sectionAdapter.refresh()
+        }
+
+        repeatOnStarted {
+            viewModel.connectPagingState(sectionAdapter)
+        }
 
         repeatOnStarted {
             viewModel.sectionList.collect {
