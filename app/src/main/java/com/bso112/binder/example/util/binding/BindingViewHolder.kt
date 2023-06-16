@@ -1,4 +1,4 @@
-package com.bso112.binder.example.binding
+package com.bso112.binder.example.util.binding
 
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes

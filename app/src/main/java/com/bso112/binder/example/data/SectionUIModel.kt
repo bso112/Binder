@@ -3,7 +3,7 @@ package com.bso112.binder.example.data
 import com.bso112.binder.example.BR
 import com.bso112.binder.example.Id
 import com.bso112.binder.example.R
-import com.bso112.binder.example.binding.IdentifiableUIModel
+import com.bso112.binder.example.util.binding.IdentifiableUIModel
 
 sealed class SectionUIModel : IdentifiableUIModel() {
     abstract val sectionTitle: String

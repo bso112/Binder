@@ -1,11 +1,11 @@
-package com.bso112.binder.example.binding
+package com.bso112.binder.example.util.binding
 
 import android.view.ViewGroup
-import androidx.recyclerview.widget.ListAdapter
+import androidx.paging.PagingDataAdapter
 
-class BindingListAdapter(
+class BindingPagingDataAdapter<T : BindableUIModel>(
     private vararg val binderBuilders: BinderBuilder
-) : ListAdapter<BindableUIModel, BindingViewHolder>(createDiffer()) {
+) : PagingDataAdapter<T, BindingViewHolder>(createDiffer()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BindingViewHolder {
         return createBindingViewHolder(parent, viewType, binderBuilders.toList())
@@ -36,4 +36,3 @@ class BindingListAdapter(
     }
 
 }
-

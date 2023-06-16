@@ -1,6 +1,7 @@
-package com.bso112.binder.example.util
+package com.bso112.binder.example.util.paging
 
 import androidx.paging.PagingDataAdapter
+import com.bso112.binder.example.util.alsoSuspend
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow

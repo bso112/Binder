@@ -1,4 +1,4 @@
-package com.bso112.binder.example.util
+package com.bso112.binder.example.util.paging
 
 import androidx.paging.CombinedLoadStates
 import androidx.paging.LoadState

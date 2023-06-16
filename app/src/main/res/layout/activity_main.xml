@@ -13,9 +13,9 @@
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/layout_refresh"
-        app:refreshing="@{vm.isLoading}"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        app:refreshing="@{vm.isLoading}">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -24,11 +24,13 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_section"
+                app:pagingStateHolder="@{vm}"
+                app:submitData="@{vm.sectionList}"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:listitem="@layout/item_section_horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:refreshLayout="@{layoutRefresh}" />
+                app:refreshLayout="@{layoutRefresh}"
+                tools:listitem="@layout/item_section_horizontal" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

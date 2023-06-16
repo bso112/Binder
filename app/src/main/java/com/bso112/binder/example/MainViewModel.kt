@@ -7,8 +7,10 @@ import androidx.paging.PagingConfig
 import androidx.paging.cachedIn
 import com.bso112.binder.example.data.GetSectionUseCase
 import com.bso112.binder.example.data.SectionPagingSource
-import com.bso112.binder.example.util.PagingStateHolder
-import com.bso112.binder.example.util.PagingStateHolderImpl
+import com.bso112.binder.example.data.SectionUIModel
+import com.bso112.binder.example.util.paging.PagingStateHolder
+import com.bso112.binder.example.util.paging.PagingStateHolderImpl
+import com.bso112.binder.example.util.paging.pagingDataModifier
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -18,9 +20,20 @@ class MainViewModel @Inject constructor(
 ) : ViewModel(),
     PagingStateHolder by PagingStateHolderImpl() {
 
-    val sectionList = Pager(
-        config = PagingConfig(pageSize = 5, initialLoadSize = 15)
-    ) {
-        SectionPagingSource(getSectionUseCase)
-    }.flow.cachedIn(viewModelScope)
+    private val _sectionList = pagingDataModifier {
+        Pager(
+            config = PagingConfig(pageSize = 5, initialLoadSize = 15)
+        ) {
+            SectionPagingSource(getSectionUseCase)
+        }.flow.cachedIn(viewModelScope)
+    }
+
+    val sectionList = _sectionList.stateFlow
+
+
+    fun provideSnapShop(snapShop: List<SectionUIModel>) {
+        _sectionList.cache(snapShop)
+    }
+
+
 }

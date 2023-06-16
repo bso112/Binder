@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
-import com.bso112.binder.example.binding.BindingPagingDataAdapter
+import com.bso112.binder.example.util.binding.BindingPagingDataAdapter
 import com.bso112.binder.example.data.SectionUIModel
 import com.bso112.binder.example.databinding.ActivityMainBinding
 import com.bso112.binder.example.util.repeatOnStarted
@@ -22,24 +22,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        val sectionAdapter = BindingPagingDataAdapter<SectionUIModel>()
         binding.lifecycleOwner = this
         binding.vm = viewModel
-        binding.rvSection.adapter = sectionAdapter
-
-        binding.layoutRefresh.setOnRefreshListener {
-            sectionAdapter.refresh()
-        }
-
-        repeatOnStarted {
-            viewModel.connectPagingState(sectionAdapter)
-        }
-
-        repeatOnStarted {
-            viewModel.sectionList.collect {
-                sectionAdapter.submitData(it)
-            }
-        }
     }
 }
