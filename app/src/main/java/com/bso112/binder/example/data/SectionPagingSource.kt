@@ -5,12 +5,12 @@ import androidx.paging.PagingState
 
 class SectionPagingSource(
     private val getSectionUseCase: GetSectionUseCase
-) : PagingSource<Int, Section>() {
-    override fun getRefreshKey(state: PagingState<Int, Section>): Int? {
+) : PagingSource<Int, SectionUIModel>() {
+    override fun getRefreshKey(state: PagingState<Int, SectionUIModel>): Int? {
         return null
     }
 
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Section> {
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, SectionUIModel> {
         return try {
             val currentPage = params.key ?: 1
             val sections = getSectionUseCase()

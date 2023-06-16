@@ -5,7 +5,7 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 import com.bso112.binder.example.binding.BindingPagingDataAdapter
-import com.bso112.binder.example.data.Section
+import com.bso112.binder.example.data.SectionUIModel
 import com.bso112.binder.example.databinding.ActivityMainBinding
 import com.bso112.binder.example.util.repeatOnStarted
 import dagger.hilt.android.AndroidEntryPoint
@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val sectionAdapter = BindingPagingDataAdapter<Section>()
+        val sectionAdapter = BindingPagingDataAdapter<SectionUIModel>()
         binding.lifecycleOwner = this
         binding.vm = viewModel
         binding.rvSection.adapter = sectionAdapter

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.bso112.binder.example.data.ProductUIModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="@{() -> item.getOnClick().invoke()}">
+
+        <ImageView
+            android:id="@+id/img_product"
+            android:layout_width="150dp"
+            android:layout_height="200dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            app:srcUrl="@{item.product.image}"
+            tools:src="@color/black" />
+
+        <ImageView
+            android:id="@+id/img_favorite"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_margin="5dp"
+            android:onClick="@{ v -> item.getOnClickFavorite().invoke(item)}"
+            android:src="@{item.like ? @drawable/ic_btn_heart_on : @drawable/ic_btn_heart_off}"
+            app:layout_constraintBottom_toBottomOf="@id/img_product"
+            app:layout_constraintEnd_toEndOf="@id/img_product"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@id/img_product"
+            app:layout_constraintTop_toTopOf="@id/img_product"
+            app:layout_constraintVertical_bias="0.0"
+            tools:src="@drawable/ic_btn_heart_on" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="5dp"
+            android:layout_marginTop="15dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="@{item.product.name}"
+            app:layout_constraintBottom_toTopOf="@id/tv_discount_rate"
+            app:layout_constraintEnd_toEndOf="@id/img_product"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@id/img_product"
+            app:layout_constraintTop_toBottomOf="@id/img_product"
+            app:layout_constraintVertical_bias="0.0"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="[샐러딩] 레디믹스 스탠다드 150g" />
+
+        <TextView
+            android:id="@+id/tv_discount_rate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            android:text="@{item.calculateDiscountRate()}"
+            android:textColor="@color/discount"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/tv_original_price"
+            app:layout_constraintEnd_toStartOf="@id/tv_discounted_price"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="@id/tv_title"
+            app:layout_constraintTop_toBottomOf="@id/tv_title"
+            app:visible="@{item.product.discountedPrice != null}"
+            tools:text="30%"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/tv_discounted_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{item.finalPrice}"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/tv_original_price"
+            app:layout_constraintEnd_toEndOf="@id/tv_title"
+            app:layout_constraintStart_toEndOf="@id/tv_discount_rate"
+            app:layout_constraintTop_toBottomOf="@id/tv_title"
+            app:layout_constraintVertical_bias="0.0"
+            tools:text="6,200원" />
+
+        <TextView
+            android:id="@+id/tv_original_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="@{item.originalPrice}"
+            android:textColor="@color/normal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/tv_title"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@id/tv_title"
+            app:layout_constraintTop_toBottomOf="@id/tv_discounted_price"
+            app:visible="@{item.product.discountedPrice != null}"
+            tools:text="8,000원" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

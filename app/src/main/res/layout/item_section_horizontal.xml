@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
@@ -8,24 +7,48 @@
 
         <variable
             name="item"
-            type="com.bso112.binder.example.data.Section.Horizontal" />
+            type="com.bso112.binder.example.data.SectionUIModel.Horizontal" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:onClick="@{() -> item.getOnClickSection().invoke(item)}"
+        android:paddingVertical="20dp">
 
         <TextView
+            android:id="@+id/tv_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@{item.title}"
-            android:textColor="@color/black"
-            android:textSize="20sp"
+            android:paddingHorizontal="30dp"
+            android:text="@{item.sectionTitle}"
+            android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="Grid" />
+            app:layout_constraintVertical_bias="0.0"
+            tools:text="섹션 제목" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_product"
+            submitList="@{item.productList}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:clipToPadding="false"
+            android:orientation="horizontal"
+            tools:listitem="@layout/item_product_normal"
+            android:overScrollMode="never"
+            android:paddingHorizontal="30dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_title" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

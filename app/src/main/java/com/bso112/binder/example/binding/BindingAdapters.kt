@@ -1,5 +1,6 @@
 package com.bso112.binder.example.binding
 
+import android.view.View
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -41,4 +42,13 @@ fun RecyclerView.setRefreshLayout(refreshLayout: SwipeRefreshLayout) {
             }
         }
     })
+}
+
+@BindingAdapter("visible")
+fun View.setVisible(isVisible: Boolean) {
+    visibility = if (isVisible) {
+        View.VISIBLE
+    } else {
+        View.GONE
+    }
 }
