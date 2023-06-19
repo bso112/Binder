@@ -11,30 +11,30 @@ class GetSectionUseCase @Inject constructor() : () -> List<SectionUIModel> {
 }
 
 fun createFakeSectionList(): List<SectionUIModel> {
-    val horizontal = SectionUIModel.Horizontal(
+    fun createHorizontal() =  SectionUIModel.Horizontal(
         id = UUID.randomUUID().toString().toId(),
         sectionTitle = "가로 섹션",
         productList = List(10) { ProductUIModel(product = createFakeProduct()) }
     )
-    val grid = SectionUIModel.Grid(
+    fun createGrid() = SectionUIModel.Grid(
         id = UUID.randomUUID().toString().toId(),
         sectionTitle = "그리드 섹션",
         productList = List(10) { ProductUIModel(product = createFakeProduct()) }
     )
-    val vertical = SectionUIModel.Vertical(
+    fun createVertical() = SectionUIModel.Vertical(
         id = UUID.randomUUID().toString().toId(),
         sectionTitle = "세로 섹션",
         productList = List(10) { ProductUIModel(product = createFakeProduct()) }
     )
     return buildList {
         repeat(10) {
-            add(horizontal.copy())
+            add(createHorizontal())
         }
         repeat(10) {
-            add(grid.copy())
+            add(createVertical())
         }
         repeat(10) {
-            add(vertical.copy())
+            add(createGrid())
         }
         shuffle()
     }

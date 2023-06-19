@@ -8,6 +8,7 @@ import androidx.paging.cachedIn
 import com.bso112.binder.example.data.GetSectionUseCase
 import com.bso112.binder.example.data.SectionPagingSource
 import com.bso112.binder.example.data.SectionUIModel
+import com.bso112.binder.example.util.paging.Modification
 import com.bso112.binder.example.util.paging.PagingStateHolder
 import com.bso112.binder.example.util.paging.PagingStateHolderImpl
 import com.bso112.binder.example.util.paging.pagingDataModifier
@@ -33,6 +34,10 @@ class MainViewModel @Inject constructor(
 
     fun provideSnapShop(snapShop: List<SectionUIModel>) {
         _sectionList.cache(snapShop)
+    }
+
+    fun deleteSection(section : SectionUIModel){
+        _sectionList.modify(Modification.Delete(section))
     }
 
 

@@ -7,6 +7,11 @@ import androidx.databinding.DataBindingUtil
 import com.bso112.binder.example.util.binding.BindingPagingDataAdapter
 import com.bso112.binder.example.data.SectionUIModel
 import com.bso112.binder.example.databinding.ActivityMainBinding
+import com.bso112.binder.example.databinding.ItemSectionGridBinding
+import com.bso112.binder.example.databinding.ItemSectionHorizontalBinding
+import com.bso112.binder.example.databinding.ItemSectionVerticalBinding
+import com.bso112.binder.example.util.binding.BindingListAdapter
+import com.bso112.binder.example.util.binding.buildBinder
 import com.bso112.binder.example.util.repeatOnStarted
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -24,5 +29,23 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         binding.lifecycleOwner = this
         binding.vm = viewModel
+
+        binding.rvSection.adapter = BindingPagingDataAdapter<SectionUIModel>(
+            buildBinder<ItemSectionHorizontalBinding, SectionUIModel.Horizontal> { item ->
+                item.onClickSection = {
+                    viewModel.deleteSection(it)
+                }
+            },
+            buildBinder<ItemSectionVerticalBinding, SectionUIModel.Vertical> { item ->
+                item.onClickSection = {
+                    viewModel.deleteSection(it)
+                }
+            },
+            buildBinder<ItemSectionGridBinding, SectionUIModel.Grid> { item ->
+                item.onClickSection = {
+                    viewModel.deleteSection(it)
+                }
+            }
+        )
     }
 }

@@ -1,6 +1,7 @@
 package com.bso112.binder.example.util.paging
 
 import androidx.paging.PagingData
+import androidx.paging.filter
 import androidx.paging.map
 
 
@@ -27,17 +28,25 @@ interface Modification<T : Any> : (PagingData<T>) -> PagingData<T> {
     }
 
     class Update<T : Any>(
-        private val selector : (T)->Boolean,
-        private val updater : (T)->T
+        private val selector: (T) -> Boolean,
+        private val updater: (T) -> T
     ) : Modification<T> {
         override fun invoke(p1: PagingData<T>): PagingData<T> {
             return p1.map {
-                if(selector(it)){
+                if (selector(it)) {
                     updater(it)
                 } else {
                     it
                 }
             }
+        }
+    }
+
+    class Delete<T : Any>(
+        private val toDelete: T
+    ) : Modification<T> {
+        override fun invoke(p1: PagingData<T>): PagingData<T> {
+            return p1.filter { it != toDelete }
         }
     }
 

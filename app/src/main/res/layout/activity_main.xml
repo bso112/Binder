@@ -24,12 +24,12 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_section"
-                app:pagingStateHolder="@{vm}"
-                app:submitData="@{vm.sectionList}"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:pagingStateHolder="@{vm}"
                 app:refreshLayout="@{layoutRefresh}"
+                app:submitData="@{vm.sectionList}"
                 tools:listitem="@layout/item_section_horizontal" />
 
 
