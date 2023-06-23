@@ -1,5 +1,6 @@
 package com.bso112.binder.example.data
 
+import com.bso112.binder.Id
 import com.bso112.binder.example.BR
 import com.bso112.binder.example.R
 import com.bso112.binder.model.IdentifiableUIModel
@@ -10,7 +11,7 @@ data class ProductUIModel(
     val product: Product,
     val isLike: Boolean = false,
 ) : IdentifiableUIModel() {
-    override val id: com.bso112.binder.Id = product.id.toId()
+    override val id: Id = product.id.toId()
     override val bindingVariableId: Int = BR.item
 
     var onClick: (() -> Unit)? = null
