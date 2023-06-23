@@ -12,7 +12,6 @@ Binder is a utility library that simplifies the process of creating Adapters and
 You no longer need to create multiple Adapters or ViewHolders.
 
 ## Setup
-To get a Git project into your build:
 
 **Step 1. Add the JitPack repository to your build file**
 
