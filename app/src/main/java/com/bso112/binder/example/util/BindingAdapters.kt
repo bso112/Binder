@@ -1,4 +1,4 @@
-package com.bso112.binder.example.util.binding
+package com.bso112.binder.example.util
 
 import android.view.View
 import android.widget.ImageView
@@ -11,9 +11,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.bso112.binder.model.BindableUIModel
+import com.bso112.binder.adapter.BindingListAdapter
+import com.bso112.binder.adapter.BindingPagingDataAdapter
 import com.bso112.binder.example.R
 import com.bso112.binder.example.util.paging.PagingStateHolder
-import com.bso112.binder.example.util.loadImage
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withTimeoutOrNull

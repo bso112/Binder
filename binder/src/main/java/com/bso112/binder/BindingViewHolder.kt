@@ -1,11 +1,11 @@
-package com.bso112.binder.example.util.binding
+package com.bso112.binder
 
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.findViewTreeLifecycleOwner
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import com.bso112.binder.example.util.createViewDataBinding
+import com.bso112.binder.model.BindableUIModel
 
 class BindingViewHolder(
     private val binding: ViewDataBinding,

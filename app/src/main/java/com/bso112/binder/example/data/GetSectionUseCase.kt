@@ -1,6 +1,6 @@
 package com.bso112.binder.example.data
 
-import com.bso112.binder.example.toId
+import com.bso112.binder.toId
 import java.util.UUID
 import javax.inject.Inject
 

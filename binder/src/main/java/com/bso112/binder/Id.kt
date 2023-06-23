@@ -1,4 +1,4 @@
-package com.bso112.binder.example
+package com.bso112.binder
 
 @JvmInline
 value class Id(val value: String) {

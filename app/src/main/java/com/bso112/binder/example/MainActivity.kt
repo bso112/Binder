@@ -4,15 +4,13 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
-import com.bso112.binder.example.util.binding.BindingPagingDataAdapter
+import com.bso112.binder.adapter.BindingPagingDataAdapter
 import com.bso112.binder.example.data.SectionUIModel
 import com.bso112.binder.example.databinding.ActivityMainBinding
 import com.bso112.binder.example.databinding.ItemSectionGridBinding
 import com.bso112.binder.example.databinding.ItemSectionHorizontalBinding
 import com.bso112.binder.example.databinding.ItemSectionVerticalBinding
-import com.bso112.binder.example.util.binding.BindingListAdapter
-import com.bso112.binder.example.util.binding.buildBinder
-import com.bso112.binder.example.util.repeatOnStarted
+import com.bso112.binder.buildBinder
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

@@ -1,7 +1,5 @@
 package com.bso112.binder.example.data
 
-import com.google.gson.annotations.SerializedName
-
 data class Product(
     val id: String,
     val name: String,

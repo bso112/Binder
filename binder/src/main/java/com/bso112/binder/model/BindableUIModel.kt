@@ -1,4 +1,4 @@
-package com.bso112.binder.example.util.binding
+package com.bso112.binder.model
 
 import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.DiffUtil

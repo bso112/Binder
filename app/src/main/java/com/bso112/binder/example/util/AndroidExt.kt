@@ -42,9 +42,3 @@ fun LifecycleOwner.repeatOnCreated(block: suspend CoroutineScope.() -> Unit) {
     }
 }
 
-fun <T : ViewDataBinding> ViewGroup.createViewDataBinding(layoutResId: Int): T = DataBindingUtil.inflate(
-    LayoutInflater.from(context),
-    layoutResId,
-    this,
-    false
-)

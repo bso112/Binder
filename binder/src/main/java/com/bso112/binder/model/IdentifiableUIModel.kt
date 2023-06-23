@@ -1,6 +1,6 @@
-package com.bso112.binder.example.util.binding
+package com.bso112.binder.model
 
-import com.bso112.binder.example.Id
+import com.bso112.binder.Id
 
 
 abstract class IdentifiableUIModel : BindableUIModel {
