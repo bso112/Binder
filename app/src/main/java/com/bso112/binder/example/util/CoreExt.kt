@@ -1,7 +1,5 @@
 package com.bso112.binder.example.util
 
-import com.google.gson.reflect.TypeToken
-
 
 suspend fun <T> T.alsoSuspend(block: suspend (T) -> Unit) =
     also {

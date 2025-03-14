@@ -1,11 +1,12 @@
-package com.bso112.binder.model
+package com.bso112.binder.binding
 
 import com.bso112.binder.Id
 
+interface IdentifiableUIModel : BindableUIModel {
 
-abstract class IdentifiableUIModel : BindableUIModel {
-    abstract val id: Id
-    abstract override fun equals(other: Any?): Boolean
+    val id: Id
+    override fun equals(other: Any?): Boolean
+    override fun hashCode(): Int
 
     override fun areItemsTheSame(other: BindableUIModel): Boolean {
         return other::class == this::class && other is IdentifiableUIModel && id == other.id
@@ -15,3 +16,5 @@ abstract class IdentifiableUIModel : BindableUIModel {
         return this == other
     }
 }
+
+

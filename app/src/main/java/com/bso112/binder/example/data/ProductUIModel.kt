@@ -1,16 +1,16 @@
 package com.bso112.binder.example.data
 
 import com.bso112.binder.Id
+import com.bso112.binder.binding.IdentifiableUIModel
 import com.bso112.binder.example.BR
 import com.bso112.binder.example.R
-import com.bso112.binder.model.IdentifiableUIModel
 import com.bso112.binder.toId
 import kotlin.math.roundToInt
 
 data class ProductUIModel(
     val product: Product,
     val isLike: Boolean = false,
-) : IdentifiableUIModel() {
+) : IdentifiableUIModel {
     override val id: Id = product.id.toId()
     override val bindingVariableId: Int = BR.item
 

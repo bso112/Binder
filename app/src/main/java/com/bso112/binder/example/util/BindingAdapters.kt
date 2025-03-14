@@ -11,9 +11,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.bso112.binder.model.BindableUIModel
-import com.bso112.binder.adapter.BindingListAdapter
-import com.bso112.binder.adapter.BindingPagingDataAdapter
+import com.bso112.binder.binding.BindableUIModel
+import com.bso112.binder.binding.BindingListAdapter
+import com.bso112.binder.binding.BindingPagingDataAdapter
 import com.bso112.binder.example.R
 import com.bso112.binder.example.util.paging.PagingStateHolder
 import kotlinx.coroutines.delay
@@ -27,16 +27,24 @@ fun ImageView.setSrcUrl(uri: String?) {
     }
 }
 
-
 @Suppress("UNCHECKED_CAST")
-@BindingAdapter("submitList")
-fun RecyclerView.bindSubmitList(
-    list: List<BindableUIModel>?
+@BindingAdapter("submitList", "commitCallback", requireAll = false)
+fun RecyclerView.setList(
+    list: List<Any>?,
+    commitCallback: Runnable?
+) {
+    (adapter as? ListAdapter<Any, *>)?.submitList(list ?: emptyList(), commitCallback)
+}
+
+@BindingAdapter("bindList", "commitCallback", requireAll = false)
+fun RecyclerView.setBindableList(
+    list: List<BindableUIModel>?,
+    commitCallback: Runnable?
 ) {
     if (adapter == null) {
         adapter = BindingListAdapter()
     }
-    (adapter as? ListAdapter<Any, *>)?.submitList(list)
+    setList(list, commitCallback)
 }
 
 @BindingAdapter("submitData")

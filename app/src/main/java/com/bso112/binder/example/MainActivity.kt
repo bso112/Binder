@@ -1,26 +1,34 @@
 package com.bso112.binder.example
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import com.bso112.binder.adapter.BindingPagingDataAdapter
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import com.bso112.binder.binding.BindingPagingDataAdapter
+import com.bso112.binder.binding.viewHolderBuilder
+import com.bso112.binder.example.data.GetSectionUseCase
 import com.bso112.binder.example.data.SectionUIModel
 import com.bso112.binder.example.databinding.ActivityMainBinding
 import com.bso112.binder.example.databinding.ItemSectionGridBinding
 import com.bso112.binder.example.databinding.ItemSectionHorizontalBinding
 import com.bso112.binder.example.databinding.ItemSectionVerticalBinding
-import com.bso112.binder.buildBinder
-import dagger.hilt.android.AndroidEntryPoint
+import com.bso112.binder.example.util.forEachApply
 
-@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private val binding: ActivityMainBinding by lazy {
         DataBindingUtil.setContentView(this, R.layout.activity_main)
     }
 
-    private val viewModel: MainViewModel by viewModels()
+    private val viewModel: MainViewModel by viewModels {
+        object : ViewModelProvider.Factory {
+            override fun <T : ViewModel> create(modelClass: Class<T>): T {
+                return MainViewModel(GetSectionUseCase()) as T
+            }
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,19 +37,34 @@ class MainActivity : AppCompatActivity() {
         binding.vm = viewModel
 
         binding.rvSection.adapter = BindingPagingDataAdapter<SectionUIModel>(
-            buildBinder<ItemSectionHorizontalBinding, SectionUIModel.Horizontal> { item ->
+            viewHolderBuilder<ItemSectionHorizontalBinding, SectionUIModel.Horizontal> { item ->
                 item.onClickSection = {
                     viewModel.deleteSection(it)
                 }
+                item.productList.forEachApply {
+                    onClickFavorite = {
+                        viewModel.toggleProductLike(it.id)
+                    }
+                }
             },
-            buildBinder<ItemSectionVerticalBinding, SectionUIModel.Vertical> { item ->
+            viewHolderBuilder<ItemSectionVerticalBinding, SectionUIModel.Vertical> { item ->
                 item.onClickSection = {
                     viewModel.deleteSection(it)
                 }
+                item.productList.forEachApply {
+                    onClickFavorite = {
+                        viewModel.toggleProductLike(it.id)
+                    }
+                }
             },
-            buildBinder<ItemSectionGridBinding, SectionUIModel.Grid> { item ->
+            viewHolderBuilder<ItemSectionGridBinding, SectionUIModel.Grid> { item ->
                 item.onClickSection = {
                     viewModel.deleteSection(it)
+                }
+                item.productList.forEachApply {
+                    onClickFavorite = {
+                        viewModel.toggleProductLike(it.id)
+                    }
                 }
             }
         )
