@@ -36,7 +36,7 @@ Replace 'master-SNAPSHOT' with the version number if you're using a specific ver
 ## How to use
 ### Create UIModel
 ```kotlin
-sealed class SectionUIModel : IdentifiableUIModel() {
+sealed class SectionUIModel : IdentifiableUIModel {
     abstract val sectionTitle: String
     abstract val productList: List<ProductUIModel>
 
@@ -75,23 +75,22 @@ IdentifiableUIModel comes in handy when you want to implement the areItemsTheSam
 </br>
 ### Bind UIModel to View
 ```kotlin
-        binding.rvSection.adapter = BindingPagingDataAdapter<SectionUIModel>(
-            buildBinder<ItemSectionHorizontalBinding, SectionUIModel.Horizontal> { item ->
+binding.rvSection.adapter = BindingPagingDataAdapter<SectionUIModel>(
+            viewHolderBuilder<ItemSectionHorizontalBinding, SectionUIModel.Horizontal> { item ->
                 item.onClickSection = {
                     viewModel.deleteSection(it)
                 }
             },
-            buildBinder<ItemSectionVerticalBinding, SectionUIModel.Vertical> { item ->
+            viewHolderBuilder<ItemSectionVerticalBinding, SectionUIModel.Vertical> { item ->
                 item.onClickSection = {
                     viewModel.deleteSection(it)
                 }
             },
-            buildBinder<ItemSectionGridBinding, SectionUIModel.Grid> { item ->
+            viewHolderBuilder<ItemSectionGridBinding, SectionUIModel.Grid> { item ->
                 item.onClickSection = {
                     viewModel.deleteSection(it)
                 }
             }
-        )
     }
 }
 ```
